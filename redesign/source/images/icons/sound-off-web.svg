@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="26px" viewBox="0 0 29 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>15538E98-E1DE-42A4-9A4B-E9B2D5D96FDE</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M20,11.5857864 L17.7071068,9.29289322 C17.3165825,8.90236893 16.6834175,8.90236893 16.2928932,9.29289322 C15.9023689,9.68341751 15.9023689,10.3165825 16.2928932,10.7071068 L18.5857864,13 L16.2928932,15.2928932 C15.9023689,15.6834175 15.9023689,16.3165825 16.2928932,16.7071068 C16.6834175,17.0976311 17.3165825,17.0976311 17.7071068,16.7071068 L20,14.4142136 L22.2928932,16.7071068 C22.6834175,17.0976311 23.3165825,17.0976311 23.7071068,16.7071068 C24.0976311,16.3165825 24.0976311,15.6834175 23.7071068,15.2928932 L21.4142136,13 L23.7071068,10.7071068 C24.0976311,10.3165825 24.0976311,9.68341751 23.7071068,9.29289322 C23.3165825,8.90236893 22.6834175,8.90236893 22.2928932,9.29289322 L20,11.5857864 Z M8.34551537,8.99990273 L12.2259,4.36042261 C12.8214,3.64926175 13.9999,4.06108943 13.9999,4.98012056 L13.9999,21.0198794 C13.9999,21.9389106 12.8214,22.3507383 12.2259,21.6395774 L8.34535266,16.9999027 L4.99077797,16.9999027 C4.44358641,16.9999027 4,16.5468664 4,16.0028726 L4,9.99693287 C4,9.44628833 4.45097518,8.99990273 4.99077797,8.99990273 L8.34551537,8.99990273 Z" id="path-1"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.5" y="-0.5" width="21" height="19">
+            <rect x="3.5" y="3.5" width="21" height="19" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-249.000000, -250.000000)">
+            <g id="soundOffWeb" transform="translate(250.000000, 250.000000)">
+                <g>
+                    <g>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <use stroke-opacity="0.16" stroke="#000000" mask="url(#mask-3)" stroke-width="1" stroke-linecap="round" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="22px" viewBox="0 0 20 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>627588F2-607F-420B-B74A-7413BBBCEAA2</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="63.7731428%" y1="83.6923077%" x2="32.2921671%" y2="4.21935484%" id="linearGradient-1">
+            <stop stop-color="#FCD08F" offset="0%"></stop>
+            <stop stop-color="#F79673" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="87.2238434%" y1="13.5282801%" x2="13.516726%" y2="116.435101%" id="linearGradient-2">
+            <stop stop-color="#E74047" offset="0%"></stop>
+            <stop stop-color="#7F50A0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="87.6158956%" y1="85.5354013%" x2="12.7393832%" y2="-16.0317611%" id="linearGradient-3">
+            <stop stop-color="#E6FFAB" offset="0%"></stop>
+            <stop stop-color="#47BEBC" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="49.9819103%" y1="100.107292%" x2="49.9819103%" y2="0.0554693561%" id="linearGradient-4">
+            <stop stop-color="#84E9DB" offset="0%"></stop>
+            <stop stop-color="#197491" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-250.000000, -300.000000)">
+            <g id="googlePlayActive" transform="translate(250.000000, 300.000000)">
+                <g id="Shape">
+                    <g>
+                        <path d="M14.7555196,14.4066148 C17.284466,12.9761555 19.2183662,11.8862817 19.3836568,11.8011353 C19.9125868,11.5116376 20.4580458,10.7453201 19.3836568,10.1492954 C19.0365465,9.96197335 17.1687626,8.90615815 14.7555196,7.54381596 L11.4331782,10.98373 L14.7555196,14.4066148 Z" fill="url(#linearGradient-1)"></path>
+                        <path d="M11.4331782,10.98373 L0.821520695,22.0016725 C1.05292756,22.035731 1.35045066,21.9676139 1.6810319,21.7802919 C2.37525248,21.3886185 9.74721393,17.2334748 14.7555196,14.4066148 L11.4331782,10.98373 Z" fill="url(#linearGradient-2)"></path>
+                        <path d="M11.4331782,10.98373 L14.7555196,7.54381596 C14.7555196,7.54381596 2.42483966,0.612900051 1.6810319,0.204197393 C1.40003785,0.0509338966 1.08598568,-0.0171832131 0.821520695,0.0509338966 L11.4331782,10.98373 Z" fill="url(#linearGradient-3)"></path>
+                        <path d="M11.4331782,10.98373 L0.804991634,0.0339046192 C0.358706972,0.136080284 0.0115966797,0.527753664 0.0115966797,1.31110043 L0.0115966797,20.6733888 C0.0115966797,21.4056478 0.292590726,21.9335554 0.821520695,21.9846432 L11.4331782,10.98373 Z" fill="url(#linearGradient-4)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

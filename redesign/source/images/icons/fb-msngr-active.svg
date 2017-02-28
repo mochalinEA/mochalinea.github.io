@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>CA1DBFD2-9752-4655-A26B-14A3E1386D64</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#03C6FF" offset="0%"></stop>
+            <stop stop-color="#0370FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-350.000000, -500.000000)">
+            <g id="fbMsngrActive" transform="translate(350.000000, 500.000000)">
+                <g>
+                    <g>
+                        <path d="M11,-1.96428571e-05 C4.92491403,-1.96428571e-05 0,4.59503393 0,10.2633732 C0,13.4425696 1.54935747,16.2839089 3.98190045,18.1664804 L3.98190045,21.9999804 L7.72677828,20.0646679 C8.76067873,20.3650071 9.86008145,20.5267661 11,20.5267661 C17.075086,20.5267661 22,15.9317125 22,10.2633732 C22,4.59503393 17.075086,-1.96428571e-05 11,-1.96428571e-05" id="Fill-1" fill="url(#linearGradient-1)"></path>
+                        <polygon id="Fill-3" fill="#FFFFFF" points="3.68325792 13.7499804 9.25791855 10.8035518 12.1447964 13.8481946 18.1176471 7.36605179 12.5429864 10.3124804 9.6561086 7.46426607"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

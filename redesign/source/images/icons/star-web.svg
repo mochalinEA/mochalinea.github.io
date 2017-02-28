@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="22px" viewBox="0 0 23 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>20FF445E-2EC5-4170-89B3-A55B8492245C</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M13.8824117,9 L12.4183877,4.606 C12.2654897,4.249 11.9127249,4 11.5,4 C11.0872751,4 10.7345103,4.249 10.5816123,4.606 L9.11758827,9 L4.99933378,9 C4.44770153,9.018 4,9.466 4,10 C4,10.381 4.19387075,10.7 4.48367755,10.86 L7.83344437,12.852 L6.57828115,16.619 C6.53031312,16.736 6.50333111,16.865 6.50333111,17 C6.50333111,17.552 6.95003331,18 7.50266489,18 C7.73550966,18 7.95036642,17.919 8.12025316,17.785 L11.5,15.42 L14.8797468,17.785 C15.0496336,17.919 15.2644903,18 15.4973351,18 C16.0499667,18 16.4966689,17.552 16.4966689,17 C16.4966689,16.865 16.4696869,16.736 16.4217189,16.619 L15.1665556,12.852 L18.5163225,10.86 C18.8061292,10.7 19,10.381 19,10 C19,9.466 18.5522985,9.018 18.0006662,9 L13.8824117,9 Z" id="path-1"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.5" y="-0.5" width="16" height="15">
+            <rect x="3.5" y="3.5" width="16" height="15" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-300.000000, -250.000000)">
+            <g id="starWeb" transform="translate(300.000000, 250.000000)">
+                <g>
+                    <g>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <use stroke-opacity="0.16" stroke="#000000" mask="url(#mask-3)" stroke-width="1" stroke-linecap="round" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

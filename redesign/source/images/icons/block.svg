@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="104px" height="104px" viewBox="0 0 104 104" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>B72446D0-4AEC-4862-9235-DA09F18C2054</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-500.000000, -600.000000)" fill="#FF2D55">
+            <g id="block" transform="translate(500.000000, 600.000000)">
+                <g>
+                    <g>
+                        <path d="M102,52 C102,24.3857625 79.6142375,2 52,2 C24.3857625,2 2,24.3857625 2,52 C2,79.6142375 24.3857625,102 52,102 C79.6142375,102 102,79.6142375 102,52 Z M0,52 C0,23.281193 23.281193,0 52,0 C80.718807,0 104,23.281193 104,52 C104,80.718807 80.718807,104 52,104 C23.281193,104 0,80.718807 0,52 Z" id="Oval"></path>
+                        <polygon id="Line" points="86.7946662 88.2088798 87.501773 88.9159866 88.9159866 87.501773 88.2088798 86.7946662 17.7071068 16.2928932 17 15.5857864 15.5857864 17 16.2928932 17.7071068"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

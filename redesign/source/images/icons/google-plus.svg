@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>A14261D2-6F9B-4F8F-8A4F-4A470DE60F29</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="52" height="52"></rect>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-470.000000, -350.000000)">
+            <g id="googlePlus" transform="translate(470.000000, 350.000000)">
+                <g>
+                    <g>
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#FFFFFF" opacity="0" xlink:href="#path-1"></use>
+                        <path d="M41,24 L41,20 L38,20 L38,24 L34,24 L34,27 L38,27 L38,31 L41,31 L41,27 L45,27 L45,24 L41,24 Z" id="Combined-Shape" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                        <path d="M26.7661,23.5 L19,23.5 L19,28.5 L25.540573,28.5 C24.534153,31.1313729 21.9854016,33 19.0002,33 C15.1342,33 12.0002,29.866 12.0002,26 C12.0002,22.134 15.1342,19 19.0002,19 C20.7372,19 22.3232,19.637 23.5472,20.684 L27.1122,17.175 C24.9752,15.21 22.1322,14 19.0002,14 C12.3722,14 7.0002,19.373 7.0002,26 C7.0002,32.627 12.3722,38 19.0002,38 C25.6272,38 31.0002,32.627 31.0002,26 C31.0002,25.142 30.9062,24.307 30.7352,23.5 L26.7661,23.5 Z" id="Combined-Shape" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
