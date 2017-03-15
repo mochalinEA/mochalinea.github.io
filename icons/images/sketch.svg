@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22" height="21" viewBox="0 0 22 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>repubSmallShadow</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3.72040533,6.7970753 C3.42763032,7.08980028 3.42763032,7.56440124 3.72040533,7.85712621 C4.01318034,8.14985119 4.48786241,8.14985119 4.78063742,7.85712621 L5.49048666,7.14739829 L5.49048666,14.0008927 C5.49048666,15.379415 6.6051564,16.4922829 7.98947767,16.4922829 L9.75354833,16.4991759 C10.1675947,16.4991759 10.5032456,16.1635824 10.5032456,15.7496067 C10.5032456,15.3356311 10.1675947,15.0000376 9.75354833,15.0000376 L7.98947767,14.9931445 C7.43276393,14.9931445 6.98988127,14.5509778 6.98988127,14.0008927 L6.98988127,6.95841656 L7.87809172,7.84647521 C8.17086673,8.13920019 8.6455488,8.13920019 8.93832381,7.84647521 C9.23109882,7.55375024 9.23109882,7.07914928 8.93832381,6.7864243 L6.87026575,4.71871966 C6.63403847,4.48253274 6.27938664,4.43691467 5.99741339,4.58186544 C5.92182814,4.61767983 5.85099649,4.66684824 5.78846339,4.72937066 L3.72040533,6.7970753 Z M13.0117669,6.99745919 C13.0117669,6.44737408 12.5688842,6.00520731 12.0121705,6.00520731 L10.2480998,5.9983143 C9.83405343,5.9983143 9.49840251,5.66272075 9.49840251,5.24874512 C9.49840251,4.83476949 9.83405343,4.49917593 10.2480998,4.49917593 L12.0121705,4.50606894 C13.3964917,4.50606894 14.5111615,5.61893688 14.5111615,6.99745919 L14.5111615,13.8509536 L15.2210107,13.1412256 C15.5137857,12.8485007 15.9884678,12.8485007 16.2812428,13.1412256 C16.5740178,13.4339506 16.5740178,13.9085516 16.2812428,14.2012766 L14.2131848,16.2689812 C14.1506516,16.3315036 14.07982,16.380672 14.0042348,16.4164864 C13.7222615,16.5614372 13.3676097,16.5158191 13.1313824,16.2796322 L11.0633243,14.2119276 C10.7705493,13.9192026 10.7705493,13.4446016 11.0633243,13.1518766 C11.3560993,12.8591517 11.8307814,12.8591517 12.1235564,13.1518766 L13.0117669,14.0399353 L13.0117669,6.99745919 Z" id="path-1"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.5" y="-0.5" width="14" height="13">
+            <rect x="3.00082407" y="3.99917593" width="14" height="13" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons_web" transform="translate(-149.000000, -150.000000)" fill-rule="nonzero">
+            <g id="repubSmallShadow" transform="translate(150.000000, 150.000000)">
+                <g id="repubSmallWeb">
+                    <g transform="translate(10.000824, 10.499176) rotate(90.000000) translate(-10.000824, -10.499176) ">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <use stroke-opacity="0.16" stroke="#000000" mask="url(#mask-3)" stroke-width="1" stroke-linecap="round" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

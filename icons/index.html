@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div class="l-container">
+    <div class="section">
+        <h2 class="section__title">Png vs svg</h2>
+        <div class="section__row">
+            <h3 class="section__label">png 1x, 2x, 3x 4471b(4574b gzip)</h3>
+            <img class="section__item" src="images/google-play-big.png" alt="">
+            <img class="section__item" src="images/google-play-big@2x.png" alt="">
+
+            <h3 class="section__label">svg 1 432b(658b gzip)</h3>
+            <img class="section__item" src="images/google-play-big.svg" alt="">
+        </div>
+    </div>
+
+    <div class="section section_sensive">
+        <h2 class="section__title">Toggle img elements</h2>
+        <div class="section__row">
+            <img class="section__item section__item_alternate" src="images/google-play-big-active.png" alt="">
+            <img class="section__item" src="images/google-play-big.png" alt="">
+            <img class="section__item section__item_alternate" src="images/google-play-big-active@2x.png" alt="">
+            <img class="section__item" src="images/google-play-big@2x.png" alt="">
+            <img class="section__item section__item_alternate" src="images/google-play-big-active.svg" alt="">
+            <img class="section__item" src="images/google-play-big.svg" alt="">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section__title">Css styles shows/hides svg parts</h2>
+        <div class="section__row">
+            <svg class="section__item google"
+                 viewBox="0 0 26 29" xmlns="http://www.w3.org/2000/svg">
+                <title>0D5D8D56-CC7D-4BE3-912A-79DBFEA0B1C3</title>
+                <path class="google_default" d="M1.024 0L14.91 14.49 1.003 29C.353 28.906 0 28.229 0 27.273V1.683C0 .655.46.14 1.024 0zm14.799 13.536L4.093 1.296a1035972.647 1035972.647 0 0 1 15.165 8.656l-3.435 3.584zm9.377-.192c1.395.795.68 1.79 0 2.18l-4.824 2.763-3.64-3.797 3.703-3.864c2.511 1.434 4.375 2.497 4.76 2.718zm-9.377 2.099l3.374 3.52-.023.013-14.93 8.55 11.579-12.083z"
+                      fill="#FFF" fill-rule="evenodd"/>
+                <defs>
+                    <linearGradient x1="63.773%" y1="83.692%" x2="32.292%" y2="4.219%" id="a">
+                        <stop stop-color="#FFDA00" offset="0%"/>
+                        <stop stop-color="#FFC800" offset="100%"/>
+                    </linearGradient>
+                    <linearGradient x1="87.224%" y1="13.528%" x2="13.517%" y2="116.435%" id="b">
+                        <stop stop-color="#FE3A44" offset="0%"/>
+                        <stop stop-color="#E02554" offset="100%"/>
+                    </linearGradient>
+                    <linearGradient x1="87.616%" y1="85.535%" x2="12.739%" y2="-16.032%" id="c">
+                        <stop stop-color="#00F076" offset="0%"/>
+                        <stop stop-color="#0FD874" offset="100%"/>
+                    </linearGradient>
+                    <linearGradient x1="11.686%" y1="100%" x2="70.823%" y2="0%" id="d">
+                        <stop stop-color="#00E3FF" offset="0%"/>
+                        <stop stop-color="#00CFFF" offset="67.073%"/>
+                        <stop stop-color="#00C4FF" offset="100%"/>
+                    </linearGradient>
+                </defs>
+                <g class="google_alternate" fill="none" fill-rule="evenodd">
+                    <path d="M19.192 19.003a813.18 813.18 0 0 1 6.02-3.437c.687-.382 1.397-1.393 0-2.179-.452-.247-2.881-1.64-6.02-3.437l-4.321 4.538 4.32 4.515z"
+                          fill="url(#a)"/>
+                    <path d="M14.87 14.488L1.069 29.02c.301.045.688-.045 1.118-.292.903-.517 10.492-5.998 17.006-9.726l-4.321-4.515z"
+                          fill="url(#b)"/>
+                    <path d="M14.87 14.488l4.322-4.538S3.154.808 2.186.27C1.821.067 1.412-.023 1.068.067l13.803 14.42z" fill="url(#c)"/>
+                    <path d="M14.87 14.488L1.048.044C.467.18.015.696.015 1.73v25.54c0 .966.365 1.662 1.053 1.73l13.803-14.511z"
+                          fill="url(#d)"/>
+                </g>
+            </svg>
+
+        </div>
+    </div>
+
+    <div class="section section_sensive">
+        <h2 class="section__title">Css styles shows/hides elements of svg sprite</h2>
+        <div class="section__row">
+            <div class="svg-sprite">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <title>0D5D8D56-CC7D-4BE3-912A-79DBFEA0B1C3</title>
+                    <symbol id="icon_google_default" viewBox="0 0 26 29">
+                        <path d="M1.024 0L14.91 14.49 1.003 29C.353 28.906 0 28.229 0 27.273V1.683C0 .655.46.14 1.024 0zm14.799 13.536L4.093 1.296a1035972.647 1035972.647 0 0 1 15.165 8.656l-3.435 3.584zm9.377-.192c1.395.795.68 1.79 0 2.18l-4.824 2.763-3.64-3.797 3.703-3.864c2.511 1.434 4.375 2.497 4.76 2.718zm-9.377 2.099l3.374 3.52-.023.013-14.93 8.55 11.579-12.083z"
+                              fill="#FFF" fill-rule="evenodd"/>
+                    </symbol>
+                    <symbol id="icon_google_alternate" viewBox="0 0 26 29" fill="none" fill-rule="evenodd">
+                        <defs>
+                            <linearGradient x1="63.773%" y1="83.692%" x2="32.292%" y2="4.219%" id="a">
+                                <stop stop-color="#FFDA00" offset="0%"/>
+                                <stop stop-color="#FFC800" offset="100%"/>
+                            </linearGradient>
+                            <linearGradient x1="87.224%" y1="13.528%" x2="13.517%" y2="116.435%" id="b">
+                                <stop stop-color="#FE3A44" offset="0%"/>
+                                <stop stop-color="#E02554" offset="100%"/>
+                            </linearGradient>
+                            <linearGradient x1="87.616%" y1="85.535%" x2="12.739%" y2="-16.032%" id="c">
+                                <stop stop-color="#00F076" offset="0%"/>
+                                <stop stop-color="#0FD874" offset="100%"/>
+                            </linearGradient>
+                            <linearGradient x1="11.686%" y1="100%" x2="70.823%" y2="0%" id="d">
+                                <stop stop-color="#00E3FF" offset="0%"/>
+                                <stop stop-color="#00CFFF" offset="67.073%"/>
+                                <stop stop-color="#00C4FF" offset="100%"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M19.192 19.003a813.18 813.18 0 0 1 6.02-3.437c.687-.382 1.397-1.393 0-2.179-.452-.247-2.881-1.64-6.02-3.437l-4.321 4.538 4.32 4.515z"
+                              fill="url(#a)"/>
+                        <path d="M14.87 14.488L1.069 29.02c.301.045.688-.045 1.118-.292.903-.517 10.492-5.998 17.006-9.726l-4.321-4.515z"
+                              fill="url(#b)"/>
+                        <path d="M14.87 14.488l4.322-4.538S3.154.808 2.186.27C1.821.067 1.412-.023 1.068.067l13.803 14.42z" fill="url(#c)"/>
+                        <path d="M14.87 14.488L1.048.044C.467.18.015.696.015 1.73v25.54c0 .966.365 1.662 1.053 1.73l13.803-14.511z"
+                              fill="url(#d)"/>
+                    </symbol>
+                </svg>
+            </div>
+
+            <svg class="section__item"><use xlink:href="#icon_google_default"></use></svg>
+            <svg class="section__item section__item_alternate"><use xlink:href="#icon_google_alternate"></use></svg>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: gray;
+    }
+
+    .section {
+        text-align: center;
+    }
+
+    .section_active {}
+
+    .section__title {}
+
+    .section__row {
+        border-bottom: 1px solid black;
+    }
+
+    .section__item {
+        width: 26px;
+        height: 29px;
+    }
+
+    .section__item_alternate {
+        display: none;
+    }
+
+    .section_sensive:hover .section__item{
+        display: none;
+    }
+
+    .section_sensive:hover .section__item_alternate {
+        display: inline-block;
+    }
+
+    .section__label {}
+
+    .section__content {}
+
+    .google {}
+
+    .google_alternate {
+        display: none;
+    }
+
+    .google:hover .google_default {
+        display: none;
+    }
+
+    .google:hover .google_alternate {
+        display: block;
+    }
+
+    .svg-sprite {
+        display: none;
+    }
+
+</style>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>
