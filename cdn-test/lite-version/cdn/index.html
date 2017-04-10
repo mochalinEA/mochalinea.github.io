@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
+<html>
 <head>
     <title>test cdn</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="https://testcdn.dev.ifunny-team.co/styles/critical.css">
-    <link rel="stylesheet" href="https://testcdn.dev.ifunny-team.co/styles/extends.css">
-    <script src="https://testcdn.dev.ifunny-team.co/vendors/jquery.min.js" defer="defer"></script>
-    <script src="https://testcdn.dev.ifunny-team.co/vendors/vue.js" crossorigin="anonymous" defer="defer"></script>
-    <script src="https://testcdn.dev.ifunny-team.co/scripts/app.js" crossorigin="anonymous" defer="defer"></script>
-    <script src="https://testcdn.dev.ifunny-team.co/vendors/fastclick.js" defer="defer"></script>
 
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="//testcdn.dev.ifunny-team.co/styles/critical.css">
+    <link rel="stylesheet" href="//testcdn.dev.ifunny-team.co/styles/extends.css">
+
+    <!-- scripts -->
+    <script src="//testcdn.dev.ifunny-team.co/vendors/jquery.min.js" defer="defer"></script>
+    <script src="//testcdn.dev.ifunny-team.co/vendors/vue.js" crossorigin="anonymous" defer="defer"></script>
+    <script src="//testcdn.dev.ifunny-team.co/scripts/app.js" crossorigin="anonymous" defer="defer"></script>
+    <script src="//testcdn.dev.ifunny-team.co/vendors/fastclick.js" defer="defer"></script>
+
+    <!-- preconnect -->
     <link rel="preconnect" href="//img.ifcdn.com/">
     <link rel="preconnect" href="//cdn.trackjs.com/">
     <link rel="preconnect" href="//usage.trackjs.com/">
@@ -24,12 +29,24 @@
 
     <style>
         @font-face {
-            font-family: 'ProximaNovaA';
-            src: url('https://testcdn.dev.ifunny-team.co/fonts/2F537A_7_0.eot');
-            src: url('https://testcdn.dev.ifunny-team.co/fonts/2F537A_7_0.eot?#iefix') format('embedded-opentype'),
-            url('https://testcdn.dev.ifunny-team.co/fonts/2F537A_7_0.woff2') format('woff2'),
-            url('https://testcdn.dev.ifunny-team.co/fonts/2F537A_7_0.woff') format('woff'),
-            url('https://testcdn.dev.ifunny-team.co/fonts/2F537A_7_0.ttf') format('truetype');
+            font-family: ProximaNova;
+            font-weight: 400;
+            src: url(//testcdn.dev.ifunny-team.co/fonts/proximanova-regular-webfont.woff2) format("woff2"),
+            url(//testcdn.dev.ifunny-team.co/fonts/proximanova-regular-webfont.woff) format("woff")
+        }
+
+        @font-face {
+            font-family: ProximaNova;
+            font-weight: 700;
+            src: url(//testcdn.dev.ifunny-team.co/fonts/proximanova-bold-webfont.woff2) format("woff2"),
+            url(//testcdn.dev.ifunny-team.co/fonts/proximanova-bold-webfont.woff) format("woff")
+        }
+
+        @font-face {
+            font-family: ProximaNovaCond;
+            font-weight: 900;
+            src: url(//testcdn.dev.ifunny-team.co/fonts/proximanovacond-black-webfont.woff2) format("woff2"),
+            url(//testcdn.dev.ifunny-team.co/fonts/proximanovacond-black-webfont.woff) format("woff")
         }
 
         h1 {
@@ -39,7 +56,11 @@
 </head>
 
 <body>
-<img src="https://testcdn.dev.ifunny-team.co/images/icons.png" alt="icons" />
-<img src="https://testcdn.dev.ifunny-team.co/images/icons@2x.png" alt="icons" />
+
+<!-- images -->
+<img src="//testcdn.dev.ifunny-team.co/images/icons@2x.png" alt="icons" />
+<img src="//testcdn.dev.ifunny-team.co/images/500@2x.jpg" alt="500" />
+<img src="//testcdn.dev.ifunny-team.co/images/404@2x.jpg" alt="404" />
+
 </body>
 </html>
