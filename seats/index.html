@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head> <meta charset="utf-8"> </head>
+
+<body>
+
+<link href="styles/styles.css" rel="stylesheet">
+
+<script src="vendors/react_dev.js"></script>
+<script src="vendors/react_dom_dev.js"></script>
+<script src="vendors/babel.min.js"></script>
+
+<script src="mocks/api_response.js"></script>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+  function getMappedGroups() {
+    const { seats, groups } = window.response;
+
+    const seatsById = seats.reduce((acc, seat) => {
+      return {
+        ...acc,
+        [seat.id]: { ...seat }
+      }
+    }, {});
+
+    return groups.map((group) => {
+      const seatIds = [ ...group.seatIds];
+      const rows = [];
+      let index = 0;
+
+      for (let rowNumber = 0; rowNumber < group.rowCount; rowNumber += 1) {
+        const ids = seatIds.slice(index, index + group.columnCount);
+        index += group.columnCount;
+
+        const row = ids.map((id) => {
+          const seat = seatsById[id];
+
+          return {
+            ...seat,
+            groupId: group.id,
+            rowId: `r${ids[0]}`,
+            size: group.seatSize,
+            type: seat.isBusy ? 'busy' : 'free',
+          }
+        });
+
+        rows.push(row)
+      }
+
+      return rows;
+    })
+  }
+
+
+  const groups = getMappedGroups();
+
+  ReactDOM.render(
+    <div className="Main">
+      <img className="Background" src="images/plane1.svg"/>
+
+      <div className="Plane">
+        {groups.map((group) => (
+          <div
+            className={`Group group${group[0][0].groupId}`}
+            key={group[0][0].groupId}
+            data-key={group[0][0].groupId}
+          >
+            {group.map((row) => (
+              <div
+                className="Row"
+                key={row[0].id}
+                data-key={row[0].rowId}
+              >
+                {row.map((seat) => (
+                  <div
+                    className={`Seat Seat_size_${seat.size} Seat_type_${seat.type}`}
+                    key={seat.id}
+                    data-key={seat.id}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>,
+    document.getElementById('root')
+  );
+</script>
+</body>
