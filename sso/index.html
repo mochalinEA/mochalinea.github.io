@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+<h1>Hi</h1>
+</body>
+
+<script>
+    // MessageBox
+    const messages = ['hello', 'world']
+    const MessageBox = document.createElement('div')
+    MessageBox.style = { position: 'fixed', top: 30, left: 0, width: '100%' }
+    MessageBox.innerText = messages.join('\n')
+
+    const addMessage = (message) => {
+        messages.push(message)
+        MessageBox.innerText = messages.join('\n')
+    }
+
+    const apiUrl = 'https://nextjs-boilerplate-three-dusky-56.vercel.app/api/sso'
+    const checkSSO = async () => {
+        fetch(apiUrl, {
+            method: 'GET',
+            credentials: 'include'
+        }).then((response) => response.json())
+            .then(data => {
+                addMessage(JSON.stringify(data))
+            })
+            .catch(error => {
+                addMessage(error)
+            })
+            .finally(() => {
+                fetch(apiUrl, {
+                    method: 'POST',
+                    credentials: 'include'
+                }).then((response) => response.json())
+                    .then(data => {
+                        addMessage(JSON.stringify(data))
+                    })
+                    .catch(error => {
+                        addMessage(error)
+                    })
+            })
+    }
+
+    // body
+    const body = document.querySelector('body')
+
+
+    // button
+    const button = document.createElement('button')
+
+    button.style = { position: 'fixed', top: 0, left: 0, width: '100%' }
+    button.innerText = 'check SSO'
+
+
+    // compose
+    button.addEventListener('click', checkSSO)
+
+    body.prepend(button)
+    body.prepend(MessageBox)
+
+    checkSSO()
+</script>
+</html>
