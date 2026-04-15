@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+<h1>Popup</h1>
+<h3>opens in 10 seconds</h3>
+</body>
+
+<button type="button">OpenIt</button>
+
+<script>
+    const Button = document.querySelector('button')
+    const openPopup = () => {
+        window.open('https://ya.ru', '_blank', 'width=400, height=400')
+    }
+
+    Button.addEventListener('click', openPopup)
+
+    setTimeout(() => {
+        openPopup()
+    }, 10000)
+</script>
+</html>
