@@ -507,7 +507,7 @@
             <div class="video-wrapper" id="videoWrapper">
 
                 <!-- Видео собеседника (remote) -->
-                <video id="remoteVideo" autoplay playsinline muted pip></video>
+                <video id="remoteVideo" autoplay playsinline pip></video>
 
                 <!-- Локальное видео (себя) -->
                 <video id="localVideo" autoplay playsinline muted></video>
@@ -549,6 +549,8 @@
             let peerConnection = null;
             let isMicMuted = false;
             let isCamOff = false;
+            let fakeAudioEl = null;
+            let fakeAudioCtx = null;
 
             // === Конфигурация ICE (для примера — публичные STUN-серверы) ===
             const rtcConfig = {
@@ -665,13 +667,13 @@
             }
 
             // === Имитация ответа (для демонстрации работы интерфейса) ===
-            function simulateRemoteAnswer(pc) {
+            async function simulateRemoteAnswer(pc) {
                 // В реальном приложении вы получаете answer от удалённого пира.
                 // Здесь мы просто создаём фейковый MediaStream с цветными полосами,
                 // чтобы показать, как выглядит UI с активным видео.
 
-                // Создаём фейковый видеопоток (тестовые полосы)
-                const fakeStream = createFakeVideoStream();
+                // Создаём фейковый видеопоток (тестовые полосы + voodoo.mp3)
+                const fakeStream = await createFakeVideoStream();
                 if (fakeStream) {
                     remoteVideo.srcObject = fakeStream;
                     if (placeholder) placeholder.style.display = 'none';
@@ -684,7 +686,7 @@
             }
 
             // === Вспомогательная функция: создаёт тестовый видеопоток (полосы) ===
-            function createFakeVideoStream() {
+            async function createFakeVideoStream() {
                 try {
                     const canvas = document.createElement('canvas');
                     canvas.width = 640;
@@ -708,19 +710,29 @@
                     draw();
 
                     const stream = canvas.captureStream(30);
-                    // Добавляем фейковый аудио-трек (тишина)
+
+                    // Аудио-трек из voodoo.mp3
                     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    const oscillator = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    gain.gain.value = 0;
-                    oscillator.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    oscillator.start();
-                    // Создаём MediaStreamAudioDestinationNode для получения аудиопотока
+                    const audioEl = new Audio('voodoo.mp3');
+                    audioEl.loop = true;
+
+                    await new Promise((resolve, reject) => {
+                        audioEl.addEventListener('canplaythrough', resolve, { once: true });
+                        audioEl.addEventListener('error', () => reject(new Error('Не удалось загрузить voodoo.mp3')), { once: true });
+                        audioEl.load();
+                    });
+
+                    const source = audioCtx.createMediaElementSource(audioEl);
                     const dest = audioCtx.createMediaStreamDestination();
-                    gain.connect(dest);
+                    source.connect(dest);
+
                     const audioTrack = dest.stream.getAudioTracks()[0];
                     if (audioTrack) stream.addTrack(audioTrack);
+
+                    await audioEl.play();
+
+                    fakeAudioEl = audioEl;
+                    fakeAudioCtx = audioCtx;
 
                     return stream;
                 } catch (e) {
@@ -833,6 +845,16 @@
                     localStream.getTracks().forEach(track => track.stop());
                     localStream = null;
                 }
+                // Останавливаем фейковое аудио
+                if (fakeAudioEl) {
+                    fakeAudioEl.pause();
+                    fakeAudioEl.src = '';
+                    fakeAudioEl = null;
+                }
+                if (fakeAudioCtx) {
+                    fakeAudioCtx.close();
+                    fakeAudioCtx = null;
+                }
                 // Сбрасываем видео-элементы
                 localVideo.srcObject = null;
                 remoteVideo.srcObject = null;
@@ -893,10 +915,22 @@
                 });
             })();
 
+            // AreaWrapper
+            const AreaWrapper = document.createElement('div')
+            AreaWrapper.setAttribute('style', 'position: absolute; top: 20px; left: 20px; padding: 20px;')
+
+            const AudioEl = document.createElement('audio');
+            AudioEl.controls = true;
+
+            const source = document.createElement('source');
+            source.src = 'voodoo.mp3';
+            source.type = 'audio/mpeg';
+            source.textContent = 'Ваш браузер не поддерживает данный формат аудио.';
+            AudioEl.appendChild(source);
+            AreaWrapper.append(AudioEl)
+
             // pipButton test
             const PipButton = document.createElement('button')
-            PipButton.setAttribute('style', 'position: absolute; top: 20px; left: 20px; padding: 20px;')
-            PipButton.classList.add('pipButton')
             PipButton.innerText = 'PiP button'
             PipButton.addEventListener('click', () => {
                 try {
@@ -911,9 +945,10 @@
                     console.log('unluck:', err)
                 }
             })
+            AreaWrapper.append(PipButton)
 
-            const Wrapper = document.getElementById('videoWrapper')
-            Wrapper.append(PipButton)
+            const VideoWrapper = document.getElementById('videoWrapper')
+            VideoWrapper.append(AreaWrapper)
 
 
         })();
