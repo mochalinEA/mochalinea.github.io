@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #1a1a2e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #e94560;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 24px;
+        }
+
+        .panel {
+            width: 100%;
+            max-width: 960px;
+            background: #16213e;
+            border: 1px solid #0f3460;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-container {
+            position: relative;
+            background: #0f0f1f;
+            aspect-ratio: 4 / 3;
+        }
+
+        #remoteVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #111;
+        }
+
+        .placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #666;
+            background: #0f0f1f;
+        }
+
+        .placeholder span {
+            color: #888;
+            font-size: 15px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 20px;
+            border-top: 1px solid #0f3460;
+            align-items: center;
+        }
+
+        button {
+            background: #0f3460;
+            border: 1px solid #2a3a6e;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #1a4a7a;
+        }
+
+        button.primary {
+            background: #e94560;
+            border-color: #e94560;
+        }
+
+        button.primary:hover {
+            background: #c73652;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-left: auto;
+            font-size: 13px;
+            color: #4ecca3;
+            background: rgba(78, 204, 163, 0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(78, 204, 163, 0.4);
+        }
+
+        .status.error {
+            color: #e94560;
+            background: rgba(233, 69, 96, 0.12);
+            border-color: rgba(233, 69, 96, 0.4);
+        }
+
+        .info {
+            width: 100%;
+            max-width: 960px;
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: #16213e;
+            border: 1px solid #0f3460;
+            border-radius: 12px;
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .info code {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #4ecca3;
+        }
+
+        .volume-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .volume-row input[type="range"] {
+            width: 120px;
+            accent-color: #e94560;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>WebRTC Test Stream</h1>
+    <p class="subtitle">Тестовый поток: видео с переменными цветами + аудио-шум через WebRTC loopback</p>
+
+    <div class="panel">
+        <div class="video-container">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <div class="placeholder" id="placeholder">
+                <span>Нажмите «Запустить» для старта WebRTC-потока</span>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="startBtn" class="primary">Запустить</button>
+            <button id="stopBtn" disabled>Остановить</button>
+            <button id="muteBtn" disabled>Выключить звук</button>
+            <div class="volume-row">
+                <label for="volumeSlider">Громкость</label>
+                <input type="range" id="volumeSlider" min="0" max="100" value="30" disabled />
+            </div>
+            <span class="status" id="status">Ожидание</span>
+        </div>
+    </div>
+
+    <div class="info">
+        Поток создаётся локально: canvas генерирует видео с плавно меняющимися цветами,
+        Web Audio API — белый шум. Затем треки передаются через <code>RTCPeerConnection</code>
+        (loopback offer/answer) и отображаются в элементе <code>&lt;video&gt;</code>.
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const remoteVideo = document.getElementById('remoteVideo');
+            const placeholder = document.getElementById('placeholder');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const statusEl = document.getElementById('status');
+
+            let senderPc = null;
+            let receiverPc = null;
+            let localStream = null;
+            let animationId = null;
+            let audioCtx = null;
+            let noiseSource = null;
+            let isMuted = false;
+            let isRunning = false;
+
+            const rtcConfig = {
+                iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+            };
+
+            function setStatus(text, isError) {
+                statusEl.textContent = text;
+                statusEl.classList.toggle('error', !!isError);
+            }
+
+            function createColorVideoTrack() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 640;
+                canvas.height = 480;
+                const ctx = canvas.getContext('2d');
+
+                let hue = 0;
+                let phase = 0;
+
+                const draw = () => {
+                    hue = (hue + 0.8) % 360;
+                    phase += 0.03;
+
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                    gradient.addColorStop(0, `hsl(${hue}, 85%, 55%)`);
+                    gradient.addColorStop(0.5, `hsl(${(hue + 120) % 360}, 80%, 45%)`);
+                    gradient.addColorStop(1, `hsl(${(hue + 240) % 360}, 90%, 50%)`);
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    const cx = canvas.width / 2 + Math.sin(phase) * 80;
+                    const cy = canvas.height / 2 + Math.cos(phase * 1.3) * 60;
+                    const radius = 90 + Math.sin(phase * 2) * 30;
+
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${(hue + 180) % 360}, 70%, 60%, 0.55)`;
+                    ctx.fill();
+
+                    ctx.fillStyle = '#fff';
+                    ctx.font = 'bold 28px sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('WebRTC Test', canvas.width / 2, canvas.height / 2 - 16);
+                    ctx.font = '16px sans-serif';
+                    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+                    ctx.fillText(`hue: ${Math.round(hue)}°`, canvas.width / 2, canvas.height / 2 + 20);
+
+                    animationId = requestAnimationFrame(draw);
+                };
+                draw();
+
+                return canvas.captureStream(30);
+            }
+
+            function createNoiseAudioTrack() {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const dest = audioCtx.createMediaStreamDestination();
+
+                const bufferSize = audioCtx.sampleRate * 2;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+
+                noiseSource = audioCtx.createBufferSource();
+                noiseSource.buffer = buffer;
+                noiseSource.loop = true;
+
+                const gain = audioCtx.createGain();
+                gain.gain.value = volumeSlider.value / 100;
+
+                noiseSource.connect(gain);
+                gain.connect(dest);
+                noiseSource.start();
+
+                volumeSlider.addEventListener('input', () => {
+                    gain.gain.value = volumeSlider.value / 100;
+                });
+
+                return dest.stream.getAudioTracks()[0];
+            }
+
+            async function createLocalStream() {
+                const videoStream = createColorVideoTrack();
+                const audioTrack = createNoiseAudioTrack();
+
+                localStream = new MediaStream([
+                    ...videoStream.getVideoTracks(),
+                    audioTrack
+                ]);
+                return localStream;
+            }
+
+            async function setupWebRtcLoopback() {
+                senderPc = new RTCPeerConnection(rtcConfig);
+                receiverPc = new RTCPeerConnection(rtcConfig);
+
+                localStream.getTracks().forEach(track => {
+                    senderPc.addTrack(track, localStream);
+                });
+
+                receiverPc.ontrack = (event) => {
+                    if (!remoteVideo.srcObject) {
+                        remoteVideo.srcObject = event.streams[0];
+                    }
+                };
+
+                senderPc.onicecandidate = (e) => {
+                    if (e.candidate) receiverPc.addIceCandidate(e.candidate);
+                };
+                receiverPc.onicecandidate = (e) => {
+                    if (e.candidate) senderPc.addIceCandidate(e.candidate);
+                };
+
+                receiverPc.oniceconnectionstatechange = () => {
+                    setStatus('ICE: ' + receiverPc.iceConnectionState);
+                };
+
+                const offer = await senderPc.createOffer();
+                await senderPc.setLocalDescription(offer);
+                await receiverPc.setRemoteDescription(offer);
+
+                const answer = await receiverPc.createAnswer();
+                await receiverPc.setLocalDescription(answer);
+                await senderPc.setRemoteDescription(answer);
+            }
+
+            async function start() {
+                if (isRunning) return;
+
+                try {
+                    setStatus('Создание потока…');
+                    await createLocalStream();
+
+                    setStatus('Установка WebRTC…');
+                    await setupWebRtcLoopback();
+
+                    placeholder.style.display = 'none';
+                    remoteVideo.volume = volumeSlider.value / 100;
+
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    muteBtn.disabled = false;
+                    volumeSlider.disabled = false;
+                    isRunning = true;
+
+                    setStatus('ICE: connected');
+                } catch (err) {
+                    console.error(err);
+                    setStatus('Ошибка: ' + err.message, true);
+                    stop();
+                }
+            }
+
+            function stop() {
+                isRunning = false;
+
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+
+                if (localStream) {
+                    localStream.getTracks().forEach(t => t.stop());
+                    localStream = null;
+                }
+
+                if (noiseSource) {
+                    try { noiseSource.stop(); } catch (_) {}
+                    noiseSource = null;
+                }
+
+                if (audioCtx) {
+                    audioCtx.close();
+                    audioCtx = null;
+                }
+
+                if (senderPc) {
+                    senderPc.close();
+                    senderPc = null;
+                }
+                if (receiverPc) {
+                    receiverPc.close();
+                    receiverPc = null;
+                }
+
+                remoteVideo.srcObject = null;
+                placeholder.style.display = 'flex';
+
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                muteBtn.disabled = true;
+                volumeSlider.disabled = true;
+                muteBtn.textContent = 'Выключить звук';
+                isMuted = false;
+
+                setStatus('Остановлено');
+            }
+
+            function toggleMute() {
+                isMuted = !isMuted;
+                remoteVideo.muted = isMuted;
+                muteBtn.textContent = isMuted ? 'Включить звук' : 'Выключить звук';
+            }
+
+            startBtn.addEventListener('click', start);
+            stopBtn.addEventListener('click', stop);
+            muteBtn.addEventListener('click', toggleMute);
+
+            volumeSlider.addEventListener('input', () => {
+                remoteVideo.volume = volumeSlider.value / 100;
+            });
+        })();
+    </script>
+
+</body>
+</html>
