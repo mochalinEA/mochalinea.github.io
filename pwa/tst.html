@@ -177,6 +177,7 @@
             </div>
         </div>
         <div class="controls">
+            <button id="pipButton" class="primary">PIP</button>
             <button id="startBtn" class="primary">Запустить</button>
             <button id="stopBtn" disabled>Остановить</button>
             <button id="muteBtn" disabled>Выключить звук</button>
@@ -428,6 +429,23 @@
             volumeSlider.addEventListener('input', () => {
                 remoteVideo.volume = volumeSlider.value / 100;
             });
+
+
+            const PipButton = document.getElementById('pipButton')
+            PipButton.addEventListener('click', () => {
+                try {
+                    if (document.pictureInPictureElement) {
+                        document.exitPictureInPicture()
+                        console.log('exit PiP')
+                    } else {
+                        remoteVideo.requestPictureInPicture()
+                        console.log('enter PiP')
+                    }
+                } catch (err) {
+                    console.log('unluck:', err)
+                }
+            })
+
         })();
     </script>
 
